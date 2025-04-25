@@ -1,3 +1,4 @@
+
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -13,7 +14,7 @@ import Invoices from "./pages/Invoices";
 import Payments from "./pages/Payments";
 import CRM from "./pages/CRM";
 import Documents from "./pages/Documents";
-import RoleMaster from "./pages/RoleMaster";
+import RoleMaster from "./pages/masters/RoleMaster";
 
 const queryClient = new QueryClient();
 
