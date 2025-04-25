@@ -4,7 +4,6 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import MainLayout from "./components/layout/MainLayout";
 import Dashboard from "./pages/Dashboard";
@@ -27,13 +26,14 @@ const App = () => (
         <Routes>
           <Route path="/" element={<MainLayout />}>
             <Route index element={<Dashboard />} />
-            <Route path="/clients" element={<Clients />} />
-            <Route path="/candidates" element={<Candidates />} />
-            <Route path="/invoices" element={<Invoices />} />
-            <Route path="/payments" element={<Payments />} />
-            <Route path="/crm" element={<CRM />} />
-            <Route path="/documents" element={<Documents />} />
-            <Route path="/masters/roles" element={<RoleMaster />} />
+            <Route path="dashboard" element={<Dashboard />} />
+            <Route path="clients" element={<Clients />} />
+            <Route path="candidates" element={<Candidates />} />
+            <Route path="invoices" element={<Invoices />} />
+            <Route path="payments" element={<Payments />} />
+            <Route path="crm" element={<CRM />} />
+            <Route path="documents" element={<Documents />} />
+            <Route path="masters/roles" element={<RoleMaster />} />
           </Route>
           <Route path="*" element={<NotFound />} />
         </Routes>
