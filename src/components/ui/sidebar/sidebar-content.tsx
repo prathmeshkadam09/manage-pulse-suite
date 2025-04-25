@@ -1,11 +1,10 @@
-
 import * as React from "react"
 import { cn } from "@/lib/utils"
 import { Separator } from "@/components/ui/separator"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { PanelLeft } from "lucide-react"
-import { useSidebar } from "./sidebar-context"
+import { useSidebar } from "./sidebar-context"  // Re-added the import
 
 export const SidebarContent = React.forwardRef<
   HTMLDivElement,
