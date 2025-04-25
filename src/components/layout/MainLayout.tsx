@@ -1,28 +1,70 @@
 
 import { useState } from "react";
 import { Outlet } from "react-router-dom";
-import Sidebar from "@/components/layout/Sidebar";
+import { cn } from "@/lib/utils";
+import { SidebarProvider, Sidebar, SidebarContent, SidebarHeader, SidebarMenu, SidebarMenuItem, SidebarMenuButton } from "@/components/ui/sidebar";
 import Header from "@/components/layout/Header";
+import { 
+  LayoutDashboard, 
+  Briefcase,
+  UserRound,
+  FileText,
+  CreditCard,
+  Users,
+  File
+} from "lucide-react";
 
 const MainLayout = () => {
   const [sidebarOpen, setSidebarOpen] = useState(true);
   
-  const toggleSidebar = () => {
-    setSidebarOpen(!sidebarOpen);
-  };
+  const menuItems = [
+    { icon: LayoutDashboard, label: "Dashboard", path: "/" },
+    { icon: Briefcase, label: "Clients & Projects", path: "/clients" },
+    { icon: UserRound, label: "Candidates", path: "/candidates" },
+    { icon: FileText, label: "Invoices", path: "/invoices" },
+    { icon: CreditCard, label: "Payments", path: "/payments" },
+    { icon: Users, label: "CRM", path: "/crm" },
+    { icon: File, label: "Documents", path: "/documents" },
+  ];
 
   return (
-    <div className="flex min-h-screen bg-background">
-      <Sidebar isOpen={sidebarOpen} toggleSidebar={toggleSidebar} />
-      <div className="flex flex-col flex-1 w-full transition-all duration-300 ease-in-out">
-        <Header toggleSidebar={toggleSidebar} sidebarOpen={sidebarOpen} />
-        <main className="flex-1 p-4 md:p-6 overflow-auto">
-          <div className="max-w-7xl mx-auto">
-            <Outlet />
-          </div>
-        </main>
+    <SidebarProvider defaultOpen>
+      <div className="flex min-h-screen w-full bg-background">
+        <Sidebar side="left" variant="sidebar">
+          <SidebarHeader>
+            <div className="flex h-16 items-center gap-2 px-4">
+              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary">
+                <span className="font-bold text-primary-foreground">RB</span>
+              </div>
+              <span className="text-lg font-semibold">Redberyl</span>
+            </div>
+          </SidebarHeader>
+          <SidebarContent className="flex flex-col gap-4">
+            <SidebarMenu>
+              {menuItems.map((item) => (
+                <SidebarMenuItem key={item.path}>
+                  <SidebarMenuButton asChild tooltip={item.label}>
+                    <a href={item.path}>
+                      <item.icon />
+                      <span>{item.label}</span>
+                    </a>
+                  </SidebarMenuButton>
+                </SidebarMenuItem>
+              ))}
+            </SidebarMenu>
+          </SidebarContent>
+        </Sidebar>
+
+        <div className="flex-1 flex flex-col min-h-screen">
+          <Header toggleSidebar={() => setSidebarOpen(!sidebarOpen)} sidebarOpen={sidebarOpen} />
+          <main className="flex-1 overflow-auto bg-background p-4 md:p-6">
+            <div className="mx-auto max-w-7xl">
+              <Outlet />
+            </div>
+          </main>
+        </div>
       </div>
-    </div>
+    </SidebarProvider>
   );
 };
 
