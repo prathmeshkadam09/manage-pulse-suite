@@ -5,6 +5,7 @@ import { Separator } from "@/components/ui/separator"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { PanelLeft } from "lucide-react"
+import { useSidebar } from "./sidebar-context"
 
 export const SidebarContent = React.forwardRef<
   HTMLDivElement,
@@ -82,4 +83,3 @@ export const SidebarInput = React.forwardRef<
   )
 })
 SidebarInput.displayName = "SidebarInput"
-
